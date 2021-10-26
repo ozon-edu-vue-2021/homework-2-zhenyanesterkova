@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @click="openFolder">
+    <div @click="openFolder" class="folder">
       <img src="../assets/img/FolderIcon.svg" alt="Иконка папки" />
       <span>
         {{ name }}
@@ -58,5 +58,10 @@ export default {
 <style scoped>
     .contents{
         padding-left: 30px;
+    }
+    .folder{
+        width: fit-content;
+        padding: 5px;
+        cursor: pointer;
     }
 </style>

@@ -23,6 +23,7 @@ export default {
     .file{
         width: fit-content;
         padding: 5px;
+        cursor: pointer;
     }
     .file:focus-within {
         background-color: rgb(153, 204, 255, 0.5);
