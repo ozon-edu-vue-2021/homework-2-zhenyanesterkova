@@ -1,42 +1,34 @@
 <template>
   <div id="app">
-    <folder-comp
-      :contents = folders
-    />
-    <file-comp
-      fileName = 'file'
-    />
-    <link-comp
-      linkName = 'link'
-    />
-    
-  </div>
+      <folder-comp
+        v-if="contents.type === 'directory'"
+        :name="contents.name"
+        :contents="contents.contents"
+      />
+      <file-comp v-if="contents.type === 'file'" fileName="contents.name" />
+      <link-comp v-if="contents.type === 'link'" linkName="contents.name" />
+    </div>
 </template>
 
 <script>
-import FolderComp from './components/FolderComp.vue';
-import FileComp from './components/FileComp.vue';
-import LinkComp from './components/LinkComp.vue';
-import json from '../public/static/node_modules.json'
+import FolderComp from "./components/FolderComp.vue";
+import FileComp from "./components/FileComp.vue";
+import LinkComp from "./components/LinkComp.vue";
+import json from "../public/static/node_modules.json";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
-    return{
-      folders: json
-    }
+    return {
+      contents: json,
+    };
   },
-  // methods: {
-  //   initfolders(){
-
-  //   }
-  // },
   components: {
     FolderComp,
     FileComp,
-    LinkComp
-  }
-}
+    LinkComp,
+  },
+};
 </script>
 
 <style>
@@ -48,7 +40,7 @@ export default {
   color: #2c3e50;
   margin: 60px 100px 0;
 }
-img{
+img {
   vertical-align: middle;
 }
 </style>
