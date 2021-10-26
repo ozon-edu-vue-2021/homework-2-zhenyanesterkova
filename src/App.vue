@@ -1,17 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <folder-comp
+      :folderName = folders.name
+      contents = {}
+    />
+    <file-comp
+      fileName = 'file'
+    />
+    <link-comp
+      linkName = 'link'
+    />
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FolderComp from './components/FolderComp.vue';
+import FileComp from './components/FileComp.vue';
+import LinkComp from './components/LinkComp.vue';
+import json from '../public/static/node_modules.json'
 
 export default {
   name: 'App',
+  data() {
+    return{
+      folders: json
+    }
+  },
+  // methods: {
+  //   initfolders(){
+
+  //   }
+  // },
   components: {
-    HelloWorld
+    FolderComp,
+    FileComp,
+    LinkComp
   }
 }
 </script>
@@ -21,8 +45,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px 100px 0;
+}
+img{
+  vertical-align: middle;
 }
 </style>
