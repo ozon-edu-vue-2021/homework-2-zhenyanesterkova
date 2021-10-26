@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <folder-comp
-      :folderName = folders.name
-      contents = {}
+      :contents = folders
     />
     <file-comp
       fileName = 'file'

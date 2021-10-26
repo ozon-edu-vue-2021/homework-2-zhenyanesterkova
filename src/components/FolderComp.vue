@@ -3,7 +3,7 @@
     <div>
       <img src="../assets/img/FolderIcon.svg" alt="Иконка папки" />
       <span>
-        {{ folderName }}
+        {{ contents.name }}
       </span>
     </div>
     
@@ -14,18 +14,12 @@
 export default {
   name: "FolderComp",
   props: {
-    folderName: {
-      type: String,
-      default: "",
+    contents: {
+      type: Object,
+      default: () => {
+        return {}
+      },
     },
-    // contents: {
-    //   type: Object,
-    //   default: () => {
-    //     let folderName = 'def';
-    //     let contents = {};
-    //     return {folderName, contents}
-    //   },
-    // },
   },
 };
 </script>
