@@ -1,19 +1,19 @@
 <template>
   <div>
-    <div @click="openFolder" class="folder">
+    <div @click="openFolder" class="folder" tabindex="2">
       <img src="../assets/img/FolderIcon.svg" alt="Иконка папки" />
       <span>
         {{ name }}
       </span>
     </div>
     <div class="contents" v-if="opened">
-      <div v-for="content in contents" :key="content.name">
+      <div v-for="(content, i) in contents" :key="content.name">
         <folder-comp
           v-if="content.type === 'directory'"
           :name="content.name"
           :contents="content.contents"
         />
-        <file-comp v-if="content.type === 'file'" :fileName="content.name" />
+        <file-comp v-if="content.type === 'file'" :fileName="content.name" @keyDownPageDown="keyDownPageDown($event, i)"/>
         <link-comp v-if="content.type === 'link'" :linkName="content.name" :target="content.target"/>
       </div>
     </div>
@@ -36,17 +36,23 @@ export default {
       default: () => {
         return [];
       },
-    },
+    }
   },
   data() {
     return {
       opened: false,
     };
   },
+  
   methods: {
     openFolder() {
       this.opened = !this.opened;
     },
+    keyDownPageDown(event, i){
+        
+        console.log(event);
+        console.log(i);
+    } 
   },
   components: {
     FileComp,

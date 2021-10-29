@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
       <folder-comp
         v-if="contents.type === 'directory'"
         :name="contents.name"

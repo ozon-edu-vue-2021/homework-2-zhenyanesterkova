@@ -1,5 +1,5 @@
 <template>
-  <div class="file" tabindex="1">
+  <div class="file" tabindex="1" @keydown.down="filePadeDown">
       <img width="35px" src="../assets/img/fileIcon.svg" alt="Иконка файла">
       <span>
           {{fileName}}
@@ -15,7 +15,12 @@ export default {
             type: String,
             default: ''
         }
-    }
+    },
+    methods: {
+        filePadeDown(){
+            this.$emit('keyDownPageDown', this);
+        }
+    },
 }
 </script>
 
