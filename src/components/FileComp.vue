@@ -1,24 +1,25 @@
 <template>
-  <div class="file" tabindex="1" @keydown.down="filePadeDown">
+  <div class="file" tabindex="1" ref="file">
       <img width="35px" src="../assets/img/fileIcon.svg" alt="Иконка файла">
       <span>
-          {{fileName}}
+          {{name}}
       </span>
   </div>
 </template>
 
 <script>
 export default {
-    fileName: "FileComp",
+    name: "FileComp",
+    inheritAttrs: false,
     props: {
-        fileName:{
+        name:{
             type: String,
             default: ''
         }
     },
     methods: {
-        filePadeDown(){
-            this.$emit('keyDownPageDown', this);
+        focus (){
+            this.$refs.file.focus()
         }
     },
 }
@@ -32,5 +33,6 @@ export default {
     }
     .file:focus-within {
         background-color: rgb(153, 204, 255, 0.5);
+        outline: none;
     }    
 </style>

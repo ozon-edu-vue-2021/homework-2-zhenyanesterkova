@@ -1,8 +1,8 @@
 <template>
-  <div class="link" tabindex="1">
+  <div class="link" tabindex="1" ref="file">
       <img width="35px" src="../assets/img/linkIcon.svg" alt="Иконка папки">
       <a v-bind:href="target">
-          {{linkName}}
+          {{name}}
       </a>
   </div>
 </template>
@@ -11,7 +11,7 @@
 export default {
     name: "LinkComp",
     props: {
-        linkName:{
+        name:{
             type: String,
             default: ''
         },
@@ -19,7 +19,12 @@ export default {
             type: String,
             default: '#'
         }
-    }
+    },
+    methods: {
+        focus (){
+            this.$refs.file.focus();
+        }
+    },
 }
 </script>
 
@@ -31,5 +36,6 @@ export default {
     }
     .link:focus-within {
         background-color: rgb(153, 204, 255, 0.5);
+        outline: none;
     }     
 </style>

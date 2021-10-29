@@ -1,19 +1,12 @@
 <template>
   <div id="app" >
-      <folder-comp
-        v-if="contents.type === 'directory'"
-        :name="contents.name"
-        :contents="contents.contents"
-      />
-      <file-comp v-if="contents.type === 'file'" fileName="contents.name" />
-      <link-comp v-if="contents.type === 'link'" linkName="contents.name" />
+    <div>{{ selectedPath }}</div>
+    <folder-comp v-bind="contents" @selected="selectedPath = $event" />      
     </div>
 </template>
 
 <script>
 import FolderComp from "./components/FolderComp.vue";
-import FileComp from "./components/FileComp.vue";
-import LinkComp from "./components/LinkComp.vue";
 import json from "../public/static/node_modules.json";
 
 export default {
@@ -21,12 +14,24 @@ export default {
   data() {
     return {
       contents: json,
+      selectedPath: "",
     };
   },
+  methods: {
+    compType(type) {
+      switch(type) {
+        case "file":
+          return "FileComp";
+        case "link":
+          return "LinkComp";
+        case "directory":
+          return "FolderComp";
+      }
+      return null;
+    }
+  },
   components: {
-    FolderComp,
-    FileComp,
-    LinkComp,
+    FolderComp
   },
 };
 </script>
