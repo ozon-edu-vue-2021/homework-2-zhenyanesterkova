@@ -1,19 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <div id="app" >
+    <div>{{ selectedPath }}</div>
+    <folder-comp v-bind="contents" @selected="selectedPath = $event" />      
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FolderComp from "./components/FolderComp.vue";
+import json from "../public/static/node_modules.json";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      contents: json,
+      selectedPath: "",
+    };
+  },
+  methods: {
+    compType(type) {
+      switch(type) {
+        case "file":
+          return "FileComp";
+        case "link":
+          return "LinkComp";
+        case "directory":
+          return "FolderComp";
+      }
+      return null;
+    }
+  },
   components: {
-    HelloWorld
-  }
-}
+    FolderComp
+  },
+};
 </script>
 
 <style>
@@ -21,8 +41,11 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px 100px 0;
+}
+img {
+  vertical-align: middle;
 }
 </style>
